@@ -61,21 +61,26 @@ executeCodeBtn.addEventListener('click', () => {
         body: raw
     };
 
-    fetch("https://api.jdoodle.com/v1/execute", requestOptions)
-        .then(response => {
-            if (response.ok) {
-                return response.text();
-            }
-            throw new Error('Something went wrong');
-        })
-        .then(result => {
-            $(".output-pre").text(JSON.parse(result).output);
-            $("#run-code-loader").css("display", "none");
-        })
-        .catch(error => {
-            $(".output-pre").text("Server down! Please try again after some time");
-            $("#run-code-loader").css("display", "none");
-        });
+    $.ajax({
+        url: '/ide-compiler/src/index.php',
+        method : "POST",
+        data: {
+            script: userCode,
+        language: "python3",
+        versionIndex: "0",
+        clientId: "3545c96ab42763542742f21089751e78",
+        clientSecret: "a1f82406e83733109dd55b9415627f5fc9c081b013e07c9297976488013eb5d1"
+        },
+
+        success: function(response){
+            $(".output-pre").text(response)
+            $("#run-code-loader").css("display", "none")
+        },
+        error: function (textStatus, errorThrown) {
+            $(".output-pre").text("Internal server error")
+            $("#run-code-loader").css("display", "none")
+        }
+    })
 });
 
 
