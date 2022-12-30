@@ -61,7 +61,7 @@ executeCodeBtn.addEventListener('click', () => {
         body: raw
     };
 
-    fetch("https://cors-anywhere.herokuapp.com/https://api.jdoodle.com/v1/execute", requestOptions)
+    fetch("https://api.jdoodle.com/v1/execute", requestOptions)
         .then(response => {
             if (response.ok) {
                 return response.text();
