@@ -5,32 +5,85 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="src/editor-style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Code Editor</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Code Editor GFG</title>
 
-    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.js"
+        integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <div class="editor">
-        <div class="editor__wrapper">
-            <div class="editor__footer">
-                <div class="editor__footer--left">
-                    <button class="editor__btn editor__run"><i class="fa fa-play" style="font-size:36px;"></i></button>
-                    <button class="editor__btn editor__reset">Reset ></button>
-                </div>
-                <div class="editor__footer--right">
-                    <div class="editor__console">
-                        <ul class="editor__console-logs"></ul>
-                    </div>
-                </div>
-            </div>
-            <div class="editor__body">
-                <div id="editorCode" class="editor__code"></div>
-            </div>
+    <div id="snackbar">Code Copied</div>
+    <div class = "compiler-box">
 
+
+    <div class="responsive-tabs-wrapper">
+        <div class="responsive-tabs responsive-tabs--enabled">
+            <ul class="responsive-tabs__list" role="tablist">
+                <li class="responsive-tabs__list__item responsive-tabs__list__item--active" id="tablist1-tab1"
+                    aria-controls="tablist1-panel1" role="tab" tabindex="0">Python3</li>
+            </ul>
+            <h2 class="tabtitle responsive-tabs__heading responsive-tabs__heading--active" tabindex="0">Python3</h2>
+            <div class="tabcontent responsive-tabs__panel responsive-tabs__panel--active" aria-hidden="false"
+                role="tabpanel" aria-labelledby="tablist1-tab1" id="tablist1-panel1">
+                <div class="code-block">
+                    <div class="code-gutter">
+                        <div class="editor-buttons-container">
+                            <div class="editor-buttons">
+                                <div class="editor-buttons-div" title="Run and Edit"><i id="copy-code-button"
+                                        title="Copy Code"
+                                        class="gfg-icon gfg-icon_copy code-sidebar-button padding-2px copy-code-button"></i>
+                                    <p></p>
+                                    <div id="run-code-loader" class="ring-load"></div>
+                                    <p><i id="run-code-button" lang="python3" title="Run Code and See Output"
+                                            class="gfg-icon gfg-icon_play padding-2px code-sidebar-button"></i></p>
+                                    <div id="generate-url-loader" class="ring-load"></div>
+                                    <p><i id="generate-url-and-run-button" title="Run Code and Generate IDE URL"
+                                            lang="python3"
+                                            class="gfg-icon gfg-icon_link padding-2px code-sidebar-button generate-url-and-run-button">
+                                        </i><br>
+                                      <i
+                                            id = "themeButton"
+                                            title="Dark Mode"
+                                            class="gfg-icon gfg-icon_dark-toggle padding-2px code-sidebar-button dark-editor-button">
+                                        </i>
+                                        
+                                        <br>
+                                        <i
+                                            id="edit-on-ide-button" title="Edit on IDE" lang="python3"
+                                            class="gfg-icon gfg-icon_code padding-2px code-sidebar-button edit-on-ide-button">
+                                        </i>
+                                    </p>
+                                </div>
+                                <p></p>
+                            </div>
+                            <p></p>
+                        </div>
+                        <p></p>
+                    </div>
+
+                    <div class="code-container-ide" id= "editorCode"></div>
+                    <p></p>
+                </div>
+                <div class="code-output-container">
+                    <div class="output-block"><i id="output-icon" title="Output"
+                            class="gfg-icon gfg-icon_arrow-right-editor padding-2px code-sidebar-button output-icon"></i>
+                        <p></p>
+                        <div class="output-pre"></div>
+                        <p></p>
+                    </div>
+                    <div class="ide-link-div"><i id="copy-url-button" title="Copy Generated Ide URL"
+                            class="gfg-icon gfg-icon_copy padding-2px code-sidebar-button copy-url-button"></i>
+                        <p></p>
+                        <pre id="ide-url"></pre>
+                        <p></p>
+                    </div>
+                    <p></p>
+                </div>
+            </div>
         </div>
     </div>
+</div>
     <!-- Required Ace Libraries -->
     <script src="src/ace.js" type="text/javascript" charset="utf-8"></script>
     <script src="src/ext-language_tools.js"></script>
@@ -40,4 +93,3 @@
 </body>
 
 </html>
-
